@@ -15,3 +15,7 @@ This repository is intentionally scaffolded while the hub’s product and implem
 ## Development
 
 No application stack has been selected yet. Add setup and build instructions here with the first implementation.
+
+## Documentation
+
+See [docs/PROJECT-OVERVIEW.md](docs/PROJECT-OVERVIEW.md) for the relationship between this hub, the individual game repositories, and the shared hosting platform.
