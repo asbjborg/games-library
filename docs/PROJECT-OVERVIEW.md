@@ -57,7 +57,7 @@ Application-specific deployment details remain in each application's repository.
 
 ## Current deployment state
 
-Lattice (`asbjborg/lattice`) is currently deployed as the Coolify application `hex-rts`:
+Lattice (`asbjborg/lattice`) is currently deployed as the Coolify application `lattice`:
 
 | Setting | Current value |
 | --- | --- |
