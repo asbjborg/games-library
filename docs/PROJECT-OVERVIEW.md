@@ -10,8 +10,8 @@ The hub is intended to catalogue and present games that are developed in separat
 games-library
     │  public catalogue and game-entry experience
     │
-    ├── links to / presents ──► rts-game-1
-    │                             Hex RTS game
+    ├── links to / presents ──► Lattice
+    │                             repo asbjborg/lattice
     │
     └── follows deployment conventions from ──► hosting
                                                 shared VPS/Coolify platform
@@ -28,9 +28,9 @@ This repository owns the public hub:
 
 It should not become the source of truth for an individual game's simulation, assets, or release process.
 
-### `rts-game-1`
+### Lattice
 
-This is the first game intended to appear in the library. It is a playable browser-first Hex RTS prototype built with TypeScript, Phaser, and Vite.
+This is the first game intended to appear in the library. The GitHub repository is `asbjborg/lattice`. It is a playable browser-first hex RTS prototype built with TypeScript, Phaser, and Vite.
 
 The current game focuses on:
 
@@ -57,11 +57,11 @@ Application-specific deployment details remain in each application's repository.
 
 ## Current deployment state
 
-`rts-game-1` is currently deployed as the Coolify application `hex-rts`:
+Lattice (`asbjborg/lattice`) is currently deployed as the Coolify application `lattice`:
 
 | Setting | Current value |
 | --- | --- |
-| Repository | `asbjborg/rts-game-1` |
+| Repository | `asbjborg/lattice` |
 | Deploy branch | `main` |
 | Build | Dockerfile, static Vite output served by Nginx |
 | Internal port | `80` |
@@ -77,7 +77,7 @@ The expected experience is:
 
 1. A visitor opens `games.soeborg-madsen.dk`.
 2. The library explains what is available and presents a catalogue of games.
-3. The visitor chooses a game, starting with Hex RTS.
+3. The visitor chooses a game, starting with Lattice.
 4. The hub sends the visitor to that game’s public playable experience.
 5. The game remains independently deployable without requiring a hub release for every gameplay change.
 
@@ -88,7 +88,7 @@ The first implementation should keep this boundary simple: a static catalogue wi
 | Concern | Owning repository |
 | --- | --- |
 | Catalogue layout and hub UX | `games-library` |
-| Game rules, simulation, rendering, and game assets | Individual game repository, currently `rts-game-1` |
+| Game rules, simulation, rendering, and game assets | Individual game repository, currently Lattice (`asbjborg/lattice`) |
 | Shared VPS, Coolify, runners, DNS, and infrastructure policy | `hosting` |
 | Game-specific container and deployment contract | The game repository |
 
@@ -97,15 +97,15 @@ When adding a new game, add its catalogue metadata and entry point here. Do not 
 ## Current status
 
 - The hub repository is scaffolded and has no application stack yet.
-- Hex RTS is the first playable game and is already hosted.
+- Lattice is the first playable game and is already hosted.
 - The shared hosting platform and publication workflow are established.
 - The next product work in this repository is to choose the hub implementation and build the first catalogue experience.
 
 ## Related documentation
 
 - [Repository README](../README.md)
-- [Hex RTS design notes](/Users/asbjborg/Documents/asmos/repos/rts-game-1/docs/DESIGN.md)
-- [Hex RTS architecture](/Users/asbjborg/Documents/asmos/repos/rts-game-1/docs/ARCHITECTURE.md)
-- [Hex RTS deployment guide](/Users/asbjborg/Documents/asmos/repos/rts-game-1/docs/DEPLOYMENT.md)
+- [Lattice design notes](/Users/asbjborg/Documents/asmos/repos/lattice/docs/DESIGN.md)
+- [Lattice architecture](/Users/asbjborg/Documents/asmos/repos/lattice/docs/ARCHITECTURE.md)
+- [Lattice deployment guide](/Users/asbjborg/Documents/asmos/repos/lattice/docs/DEPLOYMENT.md)
 - [Shared hosting platform](/Users/asbjborg/Documents/asmos/repos/hosting/docs/vps-platform.md)
 - [Coolify publication runbook](/Users/asbjborg/Documents/asmos/repos/hosting/docs/publish-a-repo-with-coolify.md)
