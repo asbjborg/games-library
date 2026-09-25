@@ -104,8 +104,8 @@ When adding a new game, add its catalogue metadata and entry point here. Do not 
 ## Related documentation
 
 - [Repository README](../README.md)
-- [Lattice design notes](/Users/asbjborg/Documents/asmos/repos/rts-game-1/docs/DESIGN.md)
-- [Lattice architecture](/Users/asbjborg/Documents/asmos/repos/rts-game-1/docs/ARCHITECTURE.md)
-- [Lattice deployment guide](/Users/asbjborg/Documents/asmos/repos/rts-game-1/docs/DEPLOYMENT.md)
+- [Lattice design notes](/Users/asbjborg/Documents/asmos/repos/lattice/docs/DESIGN.md)
+- [Lattice architecture](/Users/asbjborg/Documents/asmos/repos/lattice/docs/ARCHITECTURE.md)
+- [Lattice deployment guide](/Users/asbjborg/Documents/asmos/repos/lattice/docs/DEPLOYMENT.md)
 - [Shared hosting platform](/Users/asbjborg/Documents/asmos/repos/hosting/docs/vps-platform.md)
 - [Coolify publication runbook](/Users/asbjborg/Documents/asmos/repos/hosting/docs/publish-a-repo-with-coolify.md)
