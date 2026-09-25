@@ -11,7 +11,7 @@ games-library
     │  public catalogue and game-entry experience
     │
     ├── links to / presents ──► Lattice
-    │                             repo asbjborg/rts-game-1
+    │                             repo asbjborg/lattice
     │
     └── follows deployment conventions from ──► hosting
                                                 shared VPS/Coolify platform
@@ -30,7 +30,7 @@ It should not become the source of truth for an individual game's simulation, as
 
 ### Lattice
 
-This is the first game intended to appear in the library. The GitHub repository is `asbjborg/rts-game-1`. It is a playable browser-first hex RTS prototype built with TypeScript, Phaser, and Vite.
+This is the first game intended to appear in the library. The GitHub repository is `asbjborg/lattice`. It is a playable browser-first hex RTS prototype built with TypeScript, Phaser, and Vite.
 
 The current game focuses on:
 
@@ -57,11 +57,11 @@ Application-specific deployment details remain in each application's repository.
 
 ## Current deployment state
 
-Lattice (`asbjborg/rts-game-1`) is currently deployed as the Coolify application `hex-rts`:
+Lattice (`asbjborg/lattice`) is currently deployed as the Coolify application `hex-rts`:
 
 | Setting | Current value |
 | --- | --- |
-| Repository | `asbjborg/rts-game-1` |
+| Repository | `asbjborg/lattice` |
 | Deploy branch | `main` |
 | Build | Dockerfile, static Vite output served by Nginx |
 | Internal port | `80` |
@@ -88,7 +88,7 @@ The first implementation should keep this boundary simple: a static catalogue wi
 | Concern | Owning repository |
 | --- | --- |
 | Catalogue layout and hub UX | `games-library` |
-| Game rules, simulation, rendering, and game assets | Individual game repository, currently Lattice (`asbjborg/rts-game-1`) |
+| Game rules, simulation, rendering, and game assets | Individual game repository, currently Lattice (`asbjborg/lattice`) |
 | Shared VPS, Coolify, runners, DNS, and infrastructure policy | `hosting` |
 | Game-specific container and deployment contract | The game repository |
 
