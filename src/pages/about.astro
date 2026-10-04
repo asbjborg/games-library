@@ -1,0 +1,20 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Artwork from '../components/Artwork.astro';
+import Arrow from '../components/Arrow.astro';
+import { lattice } from '../data/games';
+---
+<SiteLayout title="Made for the love of play — Games Library" description="A small, independent collection by Teddy Søborg-Madsen. Games built from curiosity, interesting systems, and the desire to see what happens next." page="about">
+  <section class="about-layout section-shell" aria-labelledby="about-title">
+    <div class="about-copy">
+      <p class="eyebrow">Behind the collection</p>
+      <h1 id="about-title">Made for the<br /><em>love of play.</em></h1>
+      <p class="about-lead">Some ideas are too interesting<br />to leave alone.</p>
+      <p>This is a home for games by Teddy Søborg-Madsen. Small worlds built around interesting systems, a little curiosity, and that familiar urge to try one more thing.</p>
+      <p>The collection begins with Lattice: an energy network, an expanding frontier, and a whole lot of things trying to pull it apart.</p>
+      <p>One game for now. Plenty to get lost in.</p>
+      <a class="button" href="/library/">Explore the library <Arrow /></a>
+    </div>
+    <figure class="about-art"><Artwork class="about-image" eager={true} source={lattice.artwork} /><figcaption>01 / Lattice <span>Cover illustration</span></figcaption></figure>
+  </section>
+</SiteLayout>
