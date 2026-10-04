@@ -11,6 +11,7 @@
     "check": "astro check",
     "build": "astro check && astro build",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "deploy": "python3 scripts/deploy.py",
     "test": "playwright test"
   },
   "dependencies": {

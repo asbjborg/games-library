@@ -56,5 +56,8 @@ See [Project overview](docs/PROJECT-OVERVIEW.md) for ownership and routing detai
 - [Artwork provenance and prompts](docs/design/README.md)
 - [Deployment](docs/DEPLOYMENT.md)
 
+After merging and passing the main branch checks, run `npm run deploy` through Tailscale.
+The command reads its deploy-only token from 1Password. Public GitHub runners do not receive this token.
+
 The artwork is an aspirational cover illustration. It is not a gameplay screenshot.
 The initial concept sheet uses Lattice's former name, Hex RTS. Preserve it as design history.
