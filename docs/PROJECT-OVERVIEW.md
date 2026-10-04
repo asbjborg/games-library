@@ -32,7 +32,8 @@ The future-library mockup explores scale. It does not describe a committed roadm
 
 ## Lattice
 
-Lattice is the first playable game in the collection. Its current renderer uses Three.js.
+Lattice is the first playable game in the collection. Its GitHub repository is `asbjborg/lattice`.
+Its current renderer uses Three.js.
 The hub does not import the game or its simulation.
 
 The game focuses on energy networks, photon routing, mineral mining, territory expansion,
