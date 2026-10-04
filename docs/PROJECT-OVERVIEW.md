@@ -1,111 +1,72 @@
 # Games Library Project Overview
 
-This repository is the future public game hub for [games.soeborg-madsen.dk](https://games.soeborg-madsen.dk).
-
-The hub is intended to catalogue and present games that are developed in separate repositories. Each game can have its own technology, release cadence, and deployment configuration while the library provides a single, friendly entry point for players.
+This repository owns the public game hub for `games.soeborg-madsen.dk`.
+Games remain separate applications with their own source, builds, and releases.
 
 ## Repository relationships
 
 ```text
 games-library
-    │  public catalogue and game-entry experience
-    │
-    ├── links to / presents ──► Lattice
-    │                             repo asbjborg/lattice
-    │
-    └── follows deployment conventions from ──► hosting
-                                                shared VPS/Coolify platform
+  ├── presents and links to → lattice
+  └── follows deployment conventions from → hosting
 ```
 
-### `games-library`
+`lattice` was previously named `rts-game-1`. The game was previously called Hex RTS.
+Those names remain in the original design sheet, which records the initial exploration.
 
-This repository owns the public hub:
+## Hub implementation
 
-- the catalogue of available games;
-- game cards, descriptions, artwork, and links;
-- the navigation and presentation experience at `games.soeborg-madsen.dk`;
-- any hub-specific build and deployment configuration.
+The hub uses Astro and TypeScript. Astro generates static pages and optimized images.
+The public site requires no client JavaScript, runtime service, database, or credentials.
+Self-hosted fonts avoid external font requests.
 
-It should not become the source of truth for an individual game's simulation, assets, or release process.
+The site provides:
 
-### Lattice
+1. A cinematic featured-game page at `/`.
+2. A catalogue of playable games at `/library/`.
+3. A short introduction at `/about/`.
+4. A helpful 404 page for unknown hub routes.
 
-This is the first game intended to appear in the library. The GitHub repository is `asbjborg/lattice`. It is a playable browser-first hex RTS prototype built with TypeScript, Phaser, and Vite.
+Only Lattice appears in this release. Future games remain in [Game concepts](GAME-CONCEPTS.md).
+The future-library mockup explores scale. It does not describe a committed roadmap.
 
-The current game focuses on:
+## Lattice
 
-- building and reshaping an energy network;
-- photon routing and transmitter heat pressure;
-- mining minerals to expand the network;
-- territory expansion across a procedural axial hex grid;
-- enemy waves, laser turrets, and repair bots.
+Lattice is the first playable game in the collection. Its GitHub repository is `asbjborg/lattice`.
+Its current renderer uses Three.js.
+The hub does not import the game or its simulation.
 
-The game is independently built and deployed. The library should treat it as a linked game experience rather than importing its internal source code.
+The game focuses on energy networks, photon routing, mineral mining, territory expansion,
+enemy waves, laser defences, and repair systems.
 
-### `hosting`
+The current link is `https://games.soeborg-madsen.dk/lattice/`.
+This was checked against the game's deployment documentation on 4 October 2026.
+The entry is defined in `src/data/games.ts`.
 
-This repository owns the shared hosting platform and reusable deployment process:
+## Hosting boundary
 
-- Hetzner VPS infrastructure;
-- Coolify application management;
-- Tailscale-only administration;
-- repo-scoped GitHub Actions runners;
-- deployment keys, DNS, firewall, and secret-management policy;
-- the standard process for publishing a private repository.
+The `hosting` repository owns the Hetzner/Coolify platform and shared publication process.
+The hub provides a Dockerfile and static Nginx configuration. It uses internal port 80.
 
-Application-specific deployment details remain in each application's repository. Platform-wide decisions belong in `hosting`.
+Coolify must route `/lattice` and its descendants to the separate Lattice application.
+That rule must take priority over the hub's root route. The hub must not serve a catch-all SPA page.
 
-## Current deployment state
+Preparing deployment files does not publish this site. See [Deployment](DEPLOYMENT.md).
 
-Lattice (`asbjborg/lattice`) is currently deployed as the Coolify application `lattice`:
+## Ownership
 
-| Setting | Current value |
+| Concern | Owner |
 | --- | --- |
-| Repository | `asbjborg/lattice` |
-| Deploy branch | `main` |
-| Build | Dockerfile, static Vite output served by Nginx |
-| Internal port | `80` |
-| Runtime data | None; static files only |
-| Runtime secrets | None currently required |
-| Public URL | [temporary Coolify URL](https://stq5mbjvf9wgrn50hz7tz9cb.2.28.4.113.sslip.io/) |
+| Catalogue, navigation, artwork, and site pages | `games-library` |
+| Game rules, rendering, saves, and game release | `lattice` |
+| VPS, Coolify, DNS, deployment keys, shared runners | `hosting` |
 
-The temporary `sslip.io` hostname is not the final library address. The eventual hub domain is `games.soeborg-madsen.dk`, and the library can link to the game’s configured public URL until a custom game domain or hub routing strategy is chosen.
+When adding a game, add its catalogue entry and presentation here.
+Keep its implementation and deployment in its own repository.
 
-## Intended user journey
+## Related local repositories
 
-The expected experience is:
-
-1. A visitor opens `games.soeborg-madsen.dk`.
-2. The library explains what is available and presents a catalogue of games.
-3. The visitor chooses a game, starting with Lattice.
-4. The hub sends the visitor to that game’s public playable experience.
-5. The game remains independently deployable without requiring a hub release for every gameplay change.
-
-The first implementation should keep this boundary simple: a static catalogue with clear game metadata and links. A shared backend, accounts, save synchronization, or cross-game services should only be introduced when a concrete product need exists.
-
-## Ownership and change boundaries
-
-| Concern | Owning repository |
-| --- | --- |
-| Catalogue layout and hub UX | `games-library` |
-| Game rules, simulation, rendering, and game assets | Individual game repository, currently Lattice (`asbjborg/lattice`) |
-| Shared VPS, Coolify, runners, DNS, and infrastructure policy | `hosting` |
-| Game-specific container and deployment contract | The game repository |
-
-When adding a new game, add its catalogue metadata and entry point here. Do not copy the game implementation into this repository. When changing the deployment platform, update `hosting`; when changing how a particular game is built or served, update that game's deployment documentation.
-
-## Current status
-
-- The hub repository is scaffolded and has no application stack yet.
-- Lattice is the first playable game and is already hosted.
-- The shared hosting platform and publication workflow are established.
-- The next product work in this repository is to choose the hub implementation and build the first catalogue experience.
-
-## Related documentation
-
-- [Repository README](../README.md)
-- [Lattice design notes](/Users/asbjborg/Documents/asmos/repos/lattice/docs/DESIGN.md)
-- [Lattice architecture](/Users/asbjborg/Documents/asmos/repos/lattice/docs/ARCHITECTURE.md)
-- [Lattice deployment guide](/Users/asbjborg/Documents/asmos/repos/lattice/docs/DEPLOYMENT.md)
-- [Shared hosting platform](/Users/asbjborg/Documents/asmos/repos/hosting/docs/vps-platform.md)
-- [Coolify publication runbook](/Users/asbjborg/Documents/asmos/repos/hosting/docs/publish-a-repo-with-coolify.md)
+- [Lattice](../../lattice/README.md)
+- [Lattice deployment](../../lattice/docs/DEPLOYMENT.md)
+- [Shared hosting platform](../../hosting/docs/vps-platform.md)
+- [Coolify publication runbook](../../hosting/docs/publish-a-repo-with-coolify.md)

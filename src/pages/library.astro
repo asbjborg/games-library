@@ -1,0 +1,36 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Artwork from '../components/Artwork.astro';
+import Arrow from '../components/Arrow.astro';
+import { games, lattice } from '../data/games';
+---
+<SiteLayout title="The library — Games Library" description="Find your next rabbit hole. Play Lattice, the first game in the independent Søborg-Madsen games collection." page="library">
+  <div class="page-atmosphere" aria-hidden="true"><Artwork class="atmosphere-art" eager={false} source={lattice.artwork} /></div>
+  <div class="section-shell library-shell">
+    <section class="collection-heading" aria-labelledby="collection-title">
+      <div><p class="eyebrow">The collection</p><h1 id="collection-title">The library.</h1><p>Small worlds. Deep rabbit holes.</p></div>
+      <div class="collection-count"><span>{String(games.length).padStart(2, '0')}</span><span>Game to get lost in</span></div>
+    </section>
+    <div class="collection-bar"><span><span class="status-dot"></span> Available to play</span><span>Built with curiosity. Played in your browser.</span></div>
+    <div class="game-list">
+      {games.map((game) => (
+        <article class="game-feature" aria-labelledby={`${game.id}-title`}>
+          <a href={game.url} class="game-image-link" aria-label={`Play ${game.title}`}>
+            <Artwork class="game-cover" eager={true} source={game.artwork} />
+            <span class="image-note">Cover illustration</span>
+            <span class="cover-action" aria-hidden="true"><Arrow /></span>
+          </a>
+          <div class="game-information">
+            <div class="game-topline"><span class="eyebrow">{game.genre}</span><span class="availability"><span class="status-dot"></span>Playable</span></div>
+            <h2 id={`${game.id}-title`}>{game.title}</h2>
+            <p class="game-tagline">{game.tagline}</p>
+            <p class="game-description">{game.description}</p>
+            <dl class="game-facts"><div><dt>Platform</dt><dd>{game.platform}</dd></div><div><dt>Players</dt><dd>{game.players}</dd></div></dl>
+            <a class="button" href={game.url}>Play {game.title} <Arrow /></a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="collection-end"><span class="fine-rule"></span><p>Every collection starts with one good rabbit hole.</p><span class="fine-rule"></span></div>
+  </div>
+</SiteLayout>

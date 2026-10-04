@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import Mark from '../components/Mark.astro';
+import { getImage } from 'astro:assets';
+import artwork from '../assets/lattice-hero.png';
+
+interface Props {
+  title: string;
+  description: string;
+  page: 'home' | 'library' | 'about' | 'not-found';
+}
+const { title, description, page } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = await getImage({ src: artwork, width: 1200, format: 'jpg', quality: 80 });
+const navigation = [
+  { name: 'Home', href: '/', page: 'home' },
+  { name: 'Library', href: '/library/', page: 'library' },
+  { name: 'About', href: '/about/', page: 'about' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1113" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Games Library" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(socialImage.src, Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class={`page-${page}`}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Games Library home">
+        <Mark />
+        <span>Games Library<span class="brand-caption">BY SØBORG-MADSEN</span></span>
+      </a>
+      <nav aria-label="Main navigation">
+        {navigation.map((item) => (
+          <a href={item.href} aria-current={page === item.page ? 'page' : undefined}>{item.name}</a>
+        ))}
+      </nav>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="site-footer">
+      <a class="footer-brand" href="/" aria-label="Games Library home"><Mark /><span>Small worlds. Deep rabbit holes.</span></a>
+      <span>Made for the love of play.</span>
+      <a href="/about/">An independent collection <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
